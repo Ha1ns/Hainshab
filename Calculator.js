@@ -1,38 +1,22 @@
-const puppeteer = require('puppeteer');
+import java.util.Scanner;
 
-async function testYaRu(){
-    console.log('Запуск браузера');
-    const browser = await puppeteer.launch();
+public class Main {
 
-    console.log('Создание новой вкладки в браузере');
-    const page = await browser.newPage();
+    public static void main(String[] args){
+        Scanner scan = new Scanner(System.in);
 
-    console.log('Переход на страницу ya.ru');
-    await page.goto('https://ya.ru/');
+        System.out.print("Введите первое число: ");
+        float num1 = scan.nextFloat();
 
-    console.log('Ввод текста "Автоматизация тестирования" в поисковую строку');
-    const searchField = await page.$('#text');
-    await searchField.type('Автоматизация тестирования');
+        System.out.print("Введите второе число: ");
+        float num2 = scan.nextFloat();
 
-    console.log('Клик в кнопку "Найти"');
-    const searchButton = await page.$('.button[type=submit]');
-    await searchButton.click();
-    
-    console.log('Ожидание перехода в страницу поисковых результатов');
-    await page.waitForNavigation();
+        float res1 = num1 + num2;
+        float res2 = num1 - num2;
+        float res3 = num1 * num2;
+        float res4 = num1 / num2;
 
-    console.log('Получение элементов результата поиска');
-    const result = await page.$('.serp-item');
-
-    console.log('Сравнение ОР и ФР');
-    if (result == null) {
-    console.log('Результаты поиска не найдены');
-    } else {
-        console.log('Результаты поиска отобразились')
+        System.out.println("Результат: ");
+        System.out.println(res1 + "\n" + res2 + "\n" + res3 + "\n" + res4);
     }
-    
-    console.log('Закрытие браузера');
-    await browser.close();
 }
-
-testYaRu();
